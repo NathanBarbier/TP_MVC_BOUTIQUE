@@ -26,6 +26,8 @@ abstract class Repository extends BDD
                 }
             }
 
+            echo $sql;
+
             $select = $this->co->query($sql);
 
             return $select->fetch(PDO::FETCH_ASSOC);

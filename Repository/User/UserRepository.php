@@ -2,7 +2,7 @@
 
 class UserRepository extends Repository
 {
-    const TABLE = "user";
+    const TABLE = "users";
 
     public function __construct()
     {

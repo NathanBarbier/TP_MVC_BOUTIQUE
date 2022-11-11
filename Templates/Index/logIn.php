@@ -22,7 +22,19 @@
                     </div>
                 <?php
                     }
+                    if (isset($_GET["success"]) && !empty($_GET["success"])) {
                 ?>
+                    <div class="grid grid-rows-1">
+                        <div class="rows-span-1">
+                            <div class="p-4 mb-4 text-sm text-geen-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+                                <span class="font-medium">Success : </span> your registration has been successful <br>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                    }
+                ?>
+
                     <div class="grid grid-rows-2 gap-2">
                         <div class="rows-span-1">
                             <label for="email" class="block mb-2 text-xl font-medium text-gray-900 dark:text-gray-400">Email</label>

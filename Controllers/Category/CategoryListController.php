@@ -9,7 +9,7 @@ class CategoryListController extends AbstractController
         $this->categoryRepository = new CategoryRepository();
     }
 
-    public function action($data)
+    public function action(array $data): false|string
     {
         ob_start();
         $categories = $this->categoryRepository->findAll();

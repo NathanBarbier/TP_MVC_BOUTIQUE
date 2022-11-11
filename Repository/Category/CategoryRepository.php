@@ -2,7 +2,7 @@
 
 class CategoryRepository extends Repository
 {
-    const TABLE = "category";
+    const TABLE = "categories";
 
     public function __construct()
     {
@@ -15,7 +15,7 @@ class CategoryRepository extends Repository
         $sql = 'INSERT INTO '. $this->table . ' (name) VALUES (:n)';
         $insert = $this->co->prepare($sql);
         $insert->execute([
-            'n' => $data['email'],
+            'n' => $data['name'],
         ]);
 
         return $insert->rowCount();

@@ -2,42 +2,41 @@
 
 class LogInValidator extends Validator
 {
-    protected CategoryRepository $userRepository;
+    protected UserRepository $userRepository;
 
     public function __construct()
     {
-        $this->userRepository = new CategoryRepository();
+        $this->userRepository = new UserRepository();
     }
 
-    public function validate($data): array
+    public function validate(array $data): array
     {
         extract($data);
-        var_dump($data);
-        $errors = [];
 
+        $_SESSION['errors'] = [];
 
         if (empty($email) || empty($password))
         {
-            $errors[] = LogInErrorEnum::ERROR_EMPTY_INPUT->value;
-            return $errors;
+            $_SESSION['errors'][] = LogInErrorEnum::ERROR_EMPTY_INPUT->value;
+            return $_SESSION['errors'];
         }
 
-        $errors = $this->checkEmail($email);
+        $_SESSION['errors'] = $this->checkEmail($email);
 
         $user = $this->userRepository->findOneBy([
             "email" => $email,
         ]);
 
         if (empty($user)) {
-            $errors[] = LogInErrorEnum::ERROR_FORM_INCORRECT->value;
-            return $errors;
+            $_SESSION['errors'][] = LogInErrorEnum::ERROR_FORM_INCORRECT->value;
+            return $_SESSION['errors'];
         }
 
         if (!password_verify($password, $user["password"])) {
-            $errors[] = LogInErrorEnum::ERROR_FORM_INCORRECT->value;
-            return $errors;
+            $_SESSION['errors'][] = LogInErrorEnum::ERROR_FORM_INCORRECT->value;
+            return $_SESSION['errors'];
         }
 
-        return $errors;
+        return $_SESSION['errors'];
     }
 }

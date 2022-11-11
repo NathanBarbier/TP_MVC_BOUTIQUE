@@ -15,7 +15,10 @@
 
 session_start();
 
-//print_r($_POST);
+var_dump($_POST);
+echo "<hr>";
+var_dump($_SESSION);
+echo "<hr>";
 
 require_once 'Autoload.php';
 Autoload::load(); // Appel automatiquement tous les fichiers nécessaires
@@ -37,9 +40,14 @@ if(isset($_GET['page'])){
     header("Location:?page=index&action=logIn");
 }
 
+if(isset($_SESSION['errors'])) {
+    unset($_SESSION['errors']);
+}
+
 ?>
 </body>
 
+<script src="script.js"></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>

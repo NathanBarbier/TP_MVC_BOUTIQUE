@@ -45,6 +45,8 @@ class Autoload
                 require_once 'Templates/' . $className . '.php';
             } else if (file_exists('Templates/Category/' . $className . '.php')) {
                 require_once 'Templates/Category/' . $className . '.php';
+            } else if (file_exists('Templates/Category/Modal/' . $className . '.php')) {
+                require_once 'Templates/Category/Modal/' . $className . '.php';
             } else if (file_exists('Templates/Index/' . $className . '.php')) {
                 require_once 'Templates/Index/' . $className . '.php';
             } else if (file_exists('Templates/Product/' . $className . '.php')) {

@@ -2,25 +2,25 @@
 
 class SignUpController extends AbstractController
 {
-    protected CategoryRepository $userRepository;
+    protected UserRepository $userRepository;
     protected SignUpValidator $signUpValidator;
 
     public function __construct()
     {
-        $this->userRepository = new CategoryRepository();
+        $this->userRepository = new UserRepository();
         $this->signUpValidator = new SignUpValidator();
     }
 
-    public function action(array $data = [])
+    public function action(array $data): false|string
     {
         if (!empty($data["signup"]) && $data["signup"] == 1) {
             $errors = $this->signUpValidator->validate($data);
             if (empty($errors)) {
                 try {
                     if (0 === $this->userRepository->create($data)) {
-                        $errors = "Something wrong happened, we can't complete the registration :/";
+                        $errors[] = "Something wrong happened, we can't complete the registration :/";
                     } else {
-                        header("location:?page=index&action=logIn");
+                        header("location:?page=index&action=logIn&success=1");
                     };
                 } catch (Exception $e) {
                     $errors = $e->getMessage();
