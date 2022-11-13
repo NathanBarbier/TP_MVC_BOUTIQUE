@@ -4,14 +4,13 @@ class CategoryValidator extends Validator
 {
     public function validate(array $data): array {
         extract($data);
-
-        $_SESSION['errors'] = [];
+        $_SESSION['errorsModal'] = [];
 
         if (empty($name))
         {
-            $_SESSION['errors'][] = CategoryError::ERROR_NAME_MISSING->value;
+            $_SESSION['errorsModal'][] = CategoryError::ERROR_NAME_MISSING->value;
         }
 
-        return $_SESSION['errors'];
+        return $_SESSION['errorsModal'];
     }
 }

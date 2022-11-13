@@ -1,14 +1,14 @@
 <?php
 
-class CategoryCreateController extends AbstractController
+class UserCreateController extends AbstractController
 {
-    protected CategoryRepository $categoryRepository;
-    protected CategoryValidator $categoryValidator;
+    protected UserRepository $userRepository;
+    protected UserValidator $userValidator;
 
     public function __construct()
     {
-        $this->categoryValidator = new CategoryValidator();
-        $this->categoryRepository = new CategoryRepository();
+        $this->userValidator = new UserValidator();
+        $this->userRepository = new UserRepository();
     }
 
     public function action(array $data): void
@@ -17,11 +17,11 @@ class CategoryCreateController extends AbstractController
             header("location:?page=user&action=notAllowed");
         }
 
-        $errors = $this->categoryValidator->validate($data);
+        $errors = $this->userValidator->validate($data);
 
         if (empty($errors)) {
             try {
-                if (0 === $this->categoryRepository->create($data)) {
+                if (0 === $this->userRepository->create($data)) {
                     $_SESSION["errors"][] = "Something wrong happened, the creation as been canceled";
                 } else {
                     $_SESSION["success"][] = "the creation has been successful";
@@ -33,6 +33,6 @@ class CategoryCreateController extends AbstractController
 
         $_SESSION['cache'] = "create";
 
-        header("location:?page=category&action=list");
+        header("location:?page=user&action=list");
     }
 }

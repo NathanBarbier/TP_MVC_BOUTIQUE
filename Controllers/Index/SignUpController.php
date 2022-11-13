@@ -18,9 +18,10 @@ class SignUpController extends AbstractController
             if (empty($errors)) {
                 try {
                     if (0 === $this->userRepository->create($data)) {
-                        $errors[] = "Something wrong happened, we can't complete the registration :/";
+                        $_SESSION['errors'][] = "Something wrong happened, we can't complete the registration :/";
                     } else {
-                        header("location:?page=index&action=logIn&success=1");
+                        $_SESSION['success'][] = 'your registration has been successful';
+                        header("location:?page=index&action=logIn");
                     };
                 } catch (Exception $e) {
                     $errors = $e->getMessage();
@@ -30,7 +31,7 @@ class SignUpController extends AbstractController
 
         ob_start();
 
-        require_once 'Templates/Index/signUp.php';
+        require_once RouteEnum::INDEX_SIGNUP->value;
 
         return ob_get_clean();
     }

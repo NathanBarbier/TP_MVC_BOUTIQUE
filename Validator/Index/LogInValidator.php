@@ -12,7 +12,6 @@ class LogInValidator extends Validator
     public function validate(array $data): array
     {
         extract($data);
-
         $_SESSION['errors'] = [];
 
         if (empty($email) || empty($password))

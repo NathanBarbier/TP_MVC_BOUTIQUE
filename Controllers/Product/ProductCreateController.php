@@ -1,14 +1,14 @@
 <?php
 
-class CategoryCreateController extends AbstractController
+class ProductCreateController extends AbstractController
 {
-    protected CategoryRepository $categoryRepository;
-    protected CategoryValidator $categoryValidator;
+    protected ProductRepository $productRepository;
+    protected ProductValidator $productValidator;
 
     public function __construct()
     {
-        $this->categoryValidator = new CategoryValidator();
-        $this->categoryRepository = new CategoryRepository();
+        $this->productValidator = new ProductValidator();
+        $this->productRepository = new ProductRepository();
     }
 
     public function action(array $data): void
@@ -16,12 +16,11 @@ class CategoryCreateController extends AbstractController
         if (empty($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             header("location:?page=user&action=notAllowed");
         }
-
-        $errors = $this->categoryValidator->validate($data);
+        $errors = $this->productValidator->validate($data);
 
         if (empty($errors)) {
             try {
-                if (0 === $this->categoryRepository->create($data)) {
+                if (0 === $this->productRepository->create($data)) {
                     $_SESSION["errors"][] = "Something wrong happened, the creation as been canceled";
                 } else {
                     $_SESSION["success"][] = "the creation has been successful";
@@ -33,6 +32,10 @@ class CategoryCreateController extends AbstractController
 
         $_SESSION['cache'] = "create";
 
-        header("location:?page=category&action=list");
+        if (!empty($data['category'])) {
+            header("location:?page=product&action=list&category=". $data['category']);
+        } else {
+            header("location:?page=product&action=list");
+        }
     }
 }

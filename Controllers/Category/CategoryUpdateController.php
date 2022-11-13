@@ -1,6 +1,6 @@
 <?php
 
-class CategoryCreateController extends AbstractController
+class CategoryUpdateController extends AbstractController
 {
     protected CategoryRepository $categoryRepository;
     protected CategoryValidator $categoryValidator;
@@ -21,17 +21,17 @@ class CategoryCreateController extends AbstractController
 
         if (empty($errors)) {
             try {
-                if (0 === $this->categoryRepository->create($data)) {
-                    $_SESSION["errors"][] = "Something wrong happened, the creation as been canceled";
+                if (0 === $this->categoryRepository->update($data)) {
+                    $_SESSION["errors"][] = "Something wrong happened, the update as been canceled";
                 } else {
-                    $_SESSION["success"][] = "the creation has been successful";
+                    $_SESSION["success"][] = "the update has been successful";
                 }
             } catch (Exception $e) {
                 $_SESSION['errors'][] = $e->getMessage();
             }
         }
 
-        $_SESSION['cache'] = "create";
+        $_SESSION['cache'] = "update";
 
         header("location:?page=category&action=list");
     }

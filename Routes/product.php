@@ -2,28 +2,27 @@
 
 require_once "Templates/navbar.php";
 
-if(isset($_GET['action'])){
+if(isset($_GET['action'])) {
     switch ($_GET['action']) {
         case 'list':
-            $ctrl = new CategoryListController();
+            $ctrl = new ProductListController();
             echo $ctrl;
             break;
 
         case 'create':
-            $ctrl = new CategoryCreateController();
+            $ctrl = new ProductCreateController();
             echo $ctrl;
             break;
 
         case 'update':
-            $ctrl = new CategoryUpdateController();
+            $ctrl = new ProductUpdateController();
             echo $ctrl;
             break;
 
         case 'delete':
-            $ctrl = new CategoryDeleteController();
+            $ctrl = new ProductDeleteController();
             echo $ctrl;
             break;
-
         default:
             return;
     }

@@ -15,11 +15,6 @@
 
 session_start();
 
-var_dump($_POST);
-echo "<hr>";
-var_dump($_SESSION);
-echo "<hr>";
-
 require_once 'Autoload.php';
 Autoload::load(); // Appel automatiquement tous les fichiers nécessaires
 
@@ -33,6 +28,14 @@ if(isset($_GET['page'])){
             require_once "Routes/category.php";
             break;
 
+        case 'product':
+            require_once "Routes/product.php";
+            break;
+
+        case 'user':
+            require_once "Routes/user.php";
+            break;
+
         default:
             return;
     }
@@ -42,6 +45,15 @@ if(isset($_GET['page'])){
 
 if(isset($_SESSION['errors'])) {
     unset($_SESSION['errors']);
+}
+if(isset($_SESSION['success'])) {
+    unset($_SESSION['success']);
+}
+if(isset($_SESSION['errorsModal'])) {
+    unset($_SESSION['errorsModal']);
+}
+if(isset($_SESSION['cache'])) {
+    unset($_SESSION['cache']);
 }
 
 ?>

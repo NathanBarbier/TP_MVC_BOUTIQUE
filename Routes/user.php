@@ -5,22 +5,27 @@ require_once "Templates/navbar.php";
 if(isset($_GET['action'])){
     switch ($_GET['action']) {
         case 'list':
-            $ctrl = new CategoryListController();
+            $ctrl = new UserListController();
             echo $ctrl;
             break;
 
         case 'create':
-            $ctrl = new CategoryCreateController();
+            $ctrl = new UserCreateController();
             echo $ctrl;
             break;
 
         case 'update':
-            $ctrl = new CategoryUpdateController();
+            $ctrl = new UserUpdateController();
             echo $ctrl;
             break;
 
         case 'delete':
-            $ctrl = new CategoryDeleteController();
+            $ctrl = new UserDeleteController();
+            echo $ctrl;
+            break;
+
+        case 'notAllowed':
+            $ctrl = new UserNotAllowedController();
             echo $ctrl;
             break;
 

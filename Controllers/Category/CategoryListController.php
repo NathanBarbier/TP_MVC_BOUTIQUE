@@ -11,10 +11,14 @@ class CategoryListController extends AbstractController
 
     public function action(array $data): false|string
     {
+        if (empty($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+            header("location:?page=user&action=notAllowed");
+        }
+
         ob_start();
         $categories = $this->categoryRepository->findAll();
 
-        require_once "Templates/Category/list.php";
+        require_once RouteEnum::CATEGORY_LIST->value;
 
         return ob_get_clean();
     }

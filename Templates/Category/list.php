@@ -2,6 +2,7 @@
 require_once "Modal/_form.php";
 ?>
 <div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 px-12 w-full h-screen">
+    <?php require_once 'Templates/info.php'?>
     <div class="w-full text-center text-3xl">
         <h2 class="text-4xl font-bold dark:text-white text-shadow my-10">Categories</h2>
     </div>
@@ -36,20 +37,20 @@ require_once "Modal/_form.php";
 
                     <td class="py-4 px-6 ">
                         <div class="flex justify-center">
-                            <button type="button"
+                            <a type="button" href="?page=product&action=list&category=<?=$category['id'];?>"
                                     class="text-white bg-yellow-700 hover:bg-yellow-800 hover:ring-2 hover:ring-yellow-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 focus:outline-none dark:focus:ring-yellow-800"
                                     >
-                                Go to
-                            </button>
+                                See
+                            </a>
                             <button type="button" onclick="update('<?= $_GET['page'];?>', <?=$category['id'];?>)"
                                     class="text-white bg-blue-700 hover:bg-blue-800 hover:ring-2 hover:ring-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                                     data-modal-toggle="_form">
-                                Modifier
+                                Update
                             </button>
-                            <button type="button"
+                            <a type="button" href="?page=category&action=delete&id=<?=$category['id'];?>"
                                     class="focus:outline-none text-white bg-red-700 hover:bg-red-800 hover:ring-2 hover:ring-red-500 font-medium rounded-lg text-sm px-5 py-2.5  mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                                Supprimer
-                            </button>
+                                Delete
+                            </a>
                         </div>
                     </td>
                 </tr>
@@ -60,7 +61,7 @@ require_once "Modal/_form.php";
                         <button type="button" onclick="create('<?= $_GET['page'];?>' )"
                                 class="focus:outline-none text-white bg-green-700 hover:bg-green-800 hover:ring-2 hover:ring-green-500 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-900"
                                 data-modal-toggle="_form">
-                            + Ajouter
+                            + Add
                         </button>
                     </th>
                 </tr>
@@ -75,7 +76,7 @@ require_once "Modal/_form.php";
     <button type="button" onclick="create('<?= $_GET['page'];?>' )"
             class="focus:outline-none text-white bg-green-700 hover:bg-green-800 hover:ring-2 hover:ring-green-500 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-900"
             data-modal-toggle="_formx">
-        + Ajouter
+        + Add
     </button>
 <?php } ?>
 </div>

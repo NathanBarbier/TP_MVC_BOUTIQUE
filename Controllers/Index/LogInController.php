@@ -27,7 +27,7 @@ class LogInController extends AbstractController
                 $_SESSION["id"] = $user["id"];
                 $_SESSION["email"] = $user["email"];
                 $_SESSION["password"] = $user["password"];
-                $_SESSION["admin"] = $user["admin"];
+                $_SESSION["role"] = $user["role"];
 
                 header("location:?page=category&action=list");
             }
@@ -35,7 +35,7 @@ class LogInController extends AbstractController
 
         ob_start();
 
-        require_once 'Templates/Index/logIn.php';
+        require_once RouteEnum::INDEX_LOGIN->value;
 
         return ob_get_clean();
     }
