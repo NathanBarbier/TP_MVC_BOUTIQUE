@@ -36,6 +36,10 @@ if(isset($_GET['page'])){
             require_once "Routes/user.php";
             break;
 
+        case 'account':
+            require_once "Routes/account.php";
+            break;
+
         default:
             return;
     }

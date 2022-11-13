@@ -22,7 +22,7 @@
                         </a>
                     </li>
                     <li class="hover:bg-gray-500 rounded-lg hover: transition ease-in-out hover:bg-opacity-50 duration-700">
-                        <a href="?page=category&action=list" class="w-full flex items-center text-white hover:cursor-pointer">
+                        <a href="?page=account&action=show" class="w-full flex items-center text-white hover:cursor-pointer">
                             <span class="flex-1 ml-3 whitespace-nowrap"> • My account</span>
                         </a>
                     </li>

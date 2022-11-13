@@ -21,12 +21,9 @@ abstract class Repository extends BDD
             if (!empty($criteria)) {
                 $sql .= " WHERE 1 ";
                 foreach ($criteria as $key => $value) {
-                    echo $key . " " . $value;
                     $sql .= " AND " . $key . " = '" . $value ."'";
                 }
             }
-
-            echo $sql;
 
             $select = $this->co->query($sql);
 

@@ -24,6 +24,8 @@ class UserListController extends AbstractController
            return $user;
         }, $usersWithPassword);
 
+        $_SESSION['cache'] = 'create';
+
         $roles = UserRoleEnum::getValues();
 
         require_once RouteEnum::USER_LIST->value;

@@ -8,25 +8,21 @@ require_once "Templates/navbar.php";
 
 if(isset($_GET['action'])) {
     switch ($_GET['action']) {
-        case 'list':
-            $ctrl = new ProductListController();
+        case 'show':
+            $ctrl = new AccountShowController();
             echo $ctrl;
             break;
 
-        case 'create':
-            $ctrl = new ProductCreateController();
+        case 'updateEmail':
+            $ctrl = new AccountUpdateEmailController();
             echo $ctrl;
             break;
 
-        case 'update':
-            $ctrl = new ProductUpdateController();
+        case 'updatePassword':
+            $ctrl = new AccountUpdatePasswordController();
             echo $ctrl;
             break;
 
-        case 'delete':
-            $ctrl = new ProductDeleteController();
-            echo $ctrl;
-            break;
         default:
             return;
     }

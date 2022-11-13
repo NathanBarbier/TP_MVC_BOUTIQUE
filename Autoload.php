@@ -7,6 +7,8 @@ class Autoload
         spl_autoload_register(function ($className) {
             if (file_exists('Controllers/' . $className . '.php')) {
                 require_once 'Controllers/' . $className . '.php';
+            } else if (file_exists('Controllers/Account/' . $className . '.php')) {
+                require_once 'Controllers/Account/' . $className . '.php';
             } else if (file_exists('Controllers/Category/' . $className . '.php')) {
                 require_once 'Controllers/Category/' . $className . '.php';
             } else if (file_exists('Controllers/Index/' . $className . '.php')) {
@@ -37,24 +39,12 @@ class Autoload
                 require_once 'Repository/Product/' . $className . '.php';
             } else if (file_exists('Repository/User/' . $className . '.php')) {
                 require_once 'Repository/User/' . $className . '.php';
-            } else if (file_exists('Routes/' . $className . '.php')) {
-                require_once 'Routes/' . $className . '.php';
             } else if (file_exists('Services/' . $className . '.php')) {
                 require_once 'Services/' . $className . '.php';
-            } else if (file_exists('Templates/' . $className . '.php')) {
-                require_once 'Templates/' . $className . '.php';
-            } else if (file_exists('Templates/Category/' . $className . '.php')) {
-                require_once 'Templates/Category/' . $className . '.php';
-            } else if (file_exists('Templates/Category/Modal/' . $className . '.php')) {
-                require_once 'Templates/Category/Modal/' . $className . '.php';
-            } else if (file_exists('Templates/Index/' . $className . '.php')) {
-                require_once 'Templates/Index/' . $className . '.php';
-            } else if (file_exists('Templates/Product/' . $className . '.php')) {
-                require_once 'Templates/Product/' . $className . '.php';
-            } else if (file_exists('Templates/User/' . $className . '.php')) {
-                require_once 'Templates/User/' . $className . '.php';
             } else if (file_exists('Validator/' . $className . '.php')) {
                 require_once 'Validator/' . $className . '.php';
+            } else if (file_exists('Validator/Account/' . $className . '.php')) {
+                require_once 'Validator/Account/' . $className . '.php';
             } else if (file_exists('Validator/Category/' . $className . '.php')) {
                 require_once 'Validator/Category/' . $className . '.php';
             } else if (file_exists('Validator/Index/' . $className . '.php')) {

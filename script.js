@@ -42,10 +42,10 @@ function create (page) {
     })
 
     for(let element in get) {
-        console.log('aze')
-        form.action += '&' + element + '=' + get[element];
+        if (get[element] !== null) {
+            form.action += '&' + element + '=' + get[element];
+        }
     }
-
 
     // Enlever la valeur au bouton
     document.getElementById(page + 'Button').value = "";
@@ -54,6 +54,14 @@ function create (page) {
     if (document.getElementById('errors') !== null) {
         document.getElementById('errors').style.display = "none"
     }
+}
+
+function updateUser(id) {
+
+    // Attribuer la valeur au bouton
+    document.getElementById('userButtonUpdate').value = id.toString();
+
+    document.getElementById('emailInputUpdate').value = document.getElementById('email-' + id).innerText
 }
 
 function update(page, id) {

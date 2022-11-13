@@ -12,24 +12,16 @@ class ProductValidator extends Validator
         extract($data);
         $_SESSION['errorsModal'] = [];
 
-        if (empty($name) && empty($quantity) && empty($price) && (empty($id_hidden_category) || empty($id_category)))
+        if (empty($name) && empty($quantity) && empty($price))
         {
             $_SESSION['errorsModal'][] = ProductErrorEnum::ERROR_INPUT_MISSING->value;
 
             return $_SESSION['errorsModal'];
         }
 
-        if (!is_numeric($category) || !is_numeric($id_hidden_category)) {
+        if (!empty($id_category) && !is_numeric($id_category)) {
             $_SESSION['errorsModal'][] = ProductErrorEnum::ERROR_WRONG_TYPE->value;
         }
-
-        if ((int) $category !== (int) $id_hidden_category) {
-            $_SESSION['errorsModal'][] = ProductErrorEnum::ERROR_WRONG_CATEGORY->value;
-
-            return $_SESSION['errorsModal'];
-        }
-
-
 
         if(
             !empty($id_category) && empty($this->categoryRepository->findOneById($id_category))

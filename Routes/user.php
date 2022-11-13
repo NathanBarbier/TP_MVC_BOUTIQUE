@@ -1,5 +1,9 @@
 <?php
 
+if (empty($_SESSION['id'])) {
+    header("Location:?page=index&action=logIn");
+}
+
 require_once "Templates/navbar.php";
 
 if(isset($_GET['action'])){

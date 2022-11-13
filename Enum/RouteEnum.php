@@ -8,4 +8,5 @@ enum RouteEnum: string
     case PRODUCT_LIST = 'Templates/Product/list.php';
     case USER_LIST = 'Templates/User/list.php';
     case USER_NOT_ALLOWED = 'Templates/User/notAllowed.php';
+    case ACCOUNT_SHOW = 'Templates/Account/show.php';
 }

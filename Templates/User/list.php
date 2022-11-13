@@ -1,5 +1,6 @@
 <?php
 require_once "Modal/_form.php";
+require_once "Modal/_formUpdate.php";
 ?>
 <div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 px-12 w-full h-screen">
     <?php require_once 'Templates/info.php'?>
@@ -28,18 +29,19 @@ require_once "Modal/_form.php";
                 <?php foreach ($users as $user) {  ?>
                     <tr class="bg-white border-b dark:bg-gray-600 dark:border-gray-500">
                         <?php foreach ($user as $key => $value) {  ?>
-                            <td id="<?=$key;?>" class="user-<?=$user['id'];?> py-4 px-6 font-large text-gray-900 whitespace-nowrap dark:text-white">
+                            <td id="<?=$key;?>-<?=$user['id'];?>" class="py-4 px-6 font-large text-gray-900 whitespace-nowrap dark:text-white">
                                 <div class="flex justify-center">
                                     <?= $value ;?>
                                 </div>
                             </td>
-                        <?php } ?>
+                        <?php }
 
+                        if ($user['id'] !== $_SESSION['id']) {?>
                         <td class="py-4 px-6 ">
                             <div class="flex justify-center">
-                                <button type="button" onclick="update('<?= $_GET['page'];?>', <?=$user['id'];?>)"
+                                <button type="button" onclick="updateUser(<?=$user['id'];?>)"
                                         class="text-white bg-blue-700 hover:bg-blue-800 hover:ring-2 hover:ring-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                                        data-modal-toggle="_form">
+                                        data-modal-toggle="_formUpdate">
                                     Update
                                 </button>
                                 <a type="button" href="?page=user&action=delete&id=<?=$user['id'];?>"
@@ -48,12 +50,22 @@ require_once "Modal/_form.php";
                                 </a>
                             </div>
                         </td>
+                        <?php } else { ?>
+                        <td class="py-4 px-6 ">
+                            <div class="flex justify-center">
+                                <a type="button" href="?page=account&action=show"
+                                   class="text-white bg-yellow-700 hover:bg-yellow-800 hover:ring-2 hover:ring-yellow-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 focus:outline-none dark:focus:ring-yellow-800">
+                                    See
+                                </a>
+                            </div>
+                        </td>
+                        <?php }?>
                     </tr>
                 <?php } ?>
                 <tr class="bg-white border-b dark:bg-gray-600 dark:border-gray-500 sticky bottom-0 pb-1">
                     <th colspan="10" scope="row"
                         class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <button type="button" onclick="create('<?= $_GET['page'];?>' )"
+                        <button type="button"
                                 class="focus:outline-none text-white bg-green-700 hover:bg-green-800 hover:ring-2 hover:ring-green-500 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-900"
                                 data-modal-toggle="_form">
                             + Add

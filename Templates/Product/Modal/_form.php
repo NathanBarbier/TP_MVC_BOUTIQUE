@@ -42,12 +42,7 @@
                                 <label for="nameInput" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Name of the product</label>
                                 <input required type="text" name="name" id="nameInput" class="productInput text-xl bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
-                            <?php if (!empty($_GET['category'])) { ;?>
-                            <div class="col-span-1 invisible">
-                                <label for="id_hidden_category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select a category</label>
-                                <input value="<?= $_GET['category'];?>" disabled required type="text" name="id_hidden_category" id="id_hidden_category" class="productInput text-xl bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            </div>
-                            <?php } else { ?>
+                            <?php if (empty($_GET['category'])) { ;?>
                             <div class="col-span-1">
                                 <label for="id_categoryInput" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select a category</label>
                                 <select name="id_category" id="id_categoryInput" class="bg-gray-50 border border-gray-300 text-gray-900 m-0 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -60,7 +55,7 @@
                                     <?php } ?>
                                 </select>
                             </div>
-                            <?php } ?>
+                        <?php } ?>
                         </div>
                         <div class="rows-span-1 grid grid-cols-1 gap-2">
                             <div class="col-span-1">

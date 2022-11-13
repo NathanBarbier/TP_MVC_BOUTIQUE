@@ -15,7 +15,7 @@ class UserDeleteController extends AbstractController
             header("location:?page=user&action=notAllowed");
         }
 
-        if (isset($data["id"]) && !empty($data["id"])) {
+        if (isset($data["id"]) && !empty($data["id"]) && $data["id"] != $_SESSION["id"]) {
             try {
                 $this->userRepository->delete($data["id"]);
                 $_SESSION['success'][] = 'The user has been deleted';

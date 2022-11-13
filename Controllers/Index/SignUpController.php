@@ -18,7 +18,7 @@ class SignUpController extends AbstractController
             if (empty($errors)) {
                 try {
                     if (0 === $this->userRepository->create($data)) {
-                        $_SESSION['errors'][] = "Something wrong happened, we can't complete the registration :/";
+                        $_SESSION['errors'][] = UserErrorEnum::ERROR_SOMETHING_WENT_WRONG->value;
                     } else {
                         $_SESSION['success'][] = 'your registration has been successful';
                         header("location:?page=index&action=logIn");

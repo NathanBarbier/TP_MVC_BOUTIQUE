@@ -37,4 +37,30 @@ class UserRepository extends Repository
 
         return $insert->rowCount();
     }
+
+    public function updateEmail(array $data): int
+    {
+        $sql = 'UPDATE '. $this->table . ' SET email = :e WHERE id = :id';
+        $insert = $this->co->prepare($sql);
+        $insert->execute([
+            'e' => $data['email'],
+            'id' => $data['id'],
+        ]);
+
+        return $insert->rowCount();
+    }
+
+    public function updatePassword(array $data): int
+    {
+        $cryptedPassword = password_hash($data["password"], PASSWORD_BCRYPT);
+
+        $sql = 'UPDATE '. $this->table . ' SET password = :p WHERE id = :id';
+        $insert = $this->co->prepare($sql);
+        $insert->execute([
+            'p' => $cryptedPassword,
+            'id' => $data['id'],
+        ]);
+
+        return $insert->rowCount();
+    }
 }

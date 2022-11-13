@@ -16,7 +16,7 @@ class SignUpValidator extends Validator
 
         if (empty($email) || empty($password) || empty($confirmedPassword))
         {
-            $_SESSION['errors'][] = SignUpErrorEnum::ERROR_EMPTY_INPUT->value;
+            $_SESSION['errors'][] = UserErrorEnum::ERROR_EMPTY_INPUT->value;
             return $_SESSION['errors'];
         }
 
@@ -25,15 +25,15 @@ class SignUpValidator extends Validator
         if (!empty($this->userRepository->findOneBy([
             "email" => $email,
         ]))) {
-            $_SESSION['errors'][] = SignUpErrorEnum::ERROR_EMAIL_ALREADY_CHOSEN->value;
+            $_SESSION['errors'][] = UserErrorEnum::ERROR_EMAIL_ALREADY_CHOSEN->value;
         }
 
         if(!preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,20}$/',$password)) {
-            $_SESSION['errors'][] = SignUpErrorEnum::ERROR_WRONG_PASSWORD->value;
+            $_SESSION['errors'][] = UserErrorEnum::ERROR_WRONG_PASSWORD->value;
         }
 
         if ($password !== $confirmedPassword) {
-            $_SESSION['errors'][] = SignUpErrorEnum::ERROR_PASSWORD_DONT_MATCH->value;
+            $_SESSION['errors'][] = UserErrorEnum::ERROR_PASSWORD_DONT_MATCH->value;
         }
 
         return $_SESSION['errors'];
